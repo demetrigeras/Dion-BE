@@ -1,7 +1,7 @@
 import AttendanceSchema from "../models/attendance.js";
 
 
-export const getattendace = async (req, res) => {
+export const getattendances = async (req, res) => {
     try {
       const attendance = await AttendanceSchema.find();
       res.json(attendance);
@@ -11,46 +11,46 @@ export const getattendace = async (req, res) => {
     }
   };
   
-  export const getEvent = async (req, res) => {
+  export const getAttendance = async (req, res) => {
     try {
       const { id } = req.params;
-      const event = await EventSchema.findById(id);
-      res.json(event);
+      const attendance = await AttendanceSchema.findById(id);
+      res.json(attendance);
     } catch (error) {
       console.log(error.message);
       res.status(500).json({ error: error.message });
     }
   };
 
-  export const createEvent = async (req, res) => {
+  export const createAttendance = async (req, res) => {
     try {
-      const event = new EventSchema(req.body);
-      await event.save();
+      const attendance = new AttendanceSchema(req.body);
+      await attendance.save();
       console.log(req.body)
-      res.status(201).json(event); // Send the complete charity object in the response
+      res.status(201).json(attendance); // Send the complete charity object in the response
     } catch (error) {
       console.log(error.message);
       res.status(500).json({ error: error.message });
     }
   };
 
-  export const updateEvent = async (req, res) => {
+  export const updateAttendance = async (req, res) => {
     const { id } = req.params;
-    const event = await EventSchema.findByIdAndUpdate(id, req.body);
-    res.status(200).json(event);
+    const attendance = await AttendanceSchema.findByIdAndUpdate(id, req.body);
+    res.status(200).json(attendance);
   };
 
 
-  export const deleteEvent = async (req, res) => {
+  export const deleteAttendance = async (req, res) => {
     try {
       const { id } = req.params;
-      const deleted = await EventSchema.findByIdAndDelete(id);
+      const deleted = await AttendanceSchema.findByIdAndDelete(id);
   
       if (deleted) {
-        return res.status(200).send("Profile Deleted!");
+        return res.status(200).send("Attendace req Deleted!");
       }
   
-      throw new Error("Profile not found");
+      throw new Error("Attendace req found");
     } catch (error) {
       console.log(error.message);
       res.status(500).json({ error: error.message });
