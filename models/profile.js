@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import User from './user.js';
 
-const profileSchema = new mongoose.Schema({
+const ProfileSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true, unique: true },
   name:{type: String},
   photo: {type: String},
@@ -10,4 +10,4 @@ const profileSchema = new mongoose.Schema({
   createdEvents: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Event' }] 
 });
 
-export default mongoose.model('Profile', profileSchema);
+export default mongoose.model('Profile', ProfileSchema);
