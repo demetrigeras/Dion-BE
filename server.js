@@ -8,7 +8,8 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
-app.use(cors("dev"))
+app.use(express.urlencoded({ extended: true }));
+app.use(cors())
 
 app.use("/dion", routes);
 
@@ -22,3 +23,4 @@ db.on("connected", () => {
       : console.log(`Express server running in development on: ${PORT}`);
   });
 });
+

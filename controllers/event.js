@@ -47,7 +47,7 @@ export const getEvents = async (req, res) => {
       const deleted = await EventSchema.findByIdAndDelete(id);
   
       if (deleted) {
-        return res.status(200).send("Profile Deleted!");
+        return res.status(200).send("Event Deleted!");
       }
   
       throw new Error("Profile not found");
