@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken'
 
 import User from '../models/user.js'
 import ProfileSchema from '../models/profile.js'
+import Express from 'express'
 
 // for development purposes
 let SALT_ROUNDS = 11
@@ -13,8 +14,6 @@ if (process.env.NODE_ENV === 'production') {
   SALT_ROUNDS = Number(process.env.SALT_ROUNDS)
   TOKEN_KEY = process.env.TOKEN_KEY
 }
-
-
 
 
 export const signUp = async (req, res) => {
@@ -28,13 +27,13 @@ export const signUp = async (req, res) => {
     const payload = { name: user.name, id: user._id, email: user.email };
     const token = jwt.sign(payload, TOKEN_KEY, { expiresIn: '60d' }); // Token expires in 60 days
 
-    const profile = await ProfileSchema.findOne({ user: user._id });
-    const hasProfile = !!profile;
+    // const profile = await ProfileSchema.findOne({ user: user._id });
+    // const hasProfile = !!profile;
 
     // Include hasProfile information in the response
     res.status(201).json({
       token,
-      hasProfile: hasProfile
+      // hasProfile: hasProfile
     });
 
     res.status(201).json({ token });

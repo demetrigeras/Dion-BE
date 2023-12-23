@@ -11,16 +11,16 @@ export const getProfiles = async (req, res) => {
     }
   };
   
-  export const getProfile = async (req, res) => {
+  export const getProfile = async (id) => {
     try {
-      const { id } = req.params;
-      const profile = await ProfileSchema.findById(id);
-      res.json(profile);
+      const response = await api.get(`/profile/${id}`);
+      return response.data;
     } catch (error) {
-      console.log(error.message);
-      res.status(500).json({ error: error.message });
+      console.error(`Failed to get profile - error: ${error}`);
+      throw error;
     }
   };
+  
 
   export const createProfile = async (req, res) => {
     try {
